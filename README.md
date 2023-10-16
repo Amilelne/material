@@ -1,3 +1,4 @@
+```
 .
 ├── package.json
 ├── packages/               # 多子项目的目录
@@ -10,6 +11,7 @@
 ├── pnpm-workspace.yaml
 ├── scripts/*
 └── tsconfig.json
+```
 
 上述目录中各自的作用：
 - 根目录的 package.json 主要是用来声明公共的操作脚本和公共的开发编译所需的 npm 模块；
