@@ -9,7 +9,6 @@ import { reactive, provide, toRaw } from 'vue';
 import { prefixName } from '../theme/index';
 import { FORM_CONTEXT_KEY } from './type';
 import type { FormContext, FormItemContext, ValidateResult } from './type';
-import { emit } from 'process';
 
 const className = `${prefixName}-form`;
 const props = defineProps<{ model?: FormContext['model'] }>();

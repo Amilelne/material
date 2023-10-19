@@ -30,9 +30,7 @@ const closeMessage = () => {
   show.value = false;
 };
 
-defineExpose<{
-  closeMessage: () => void;
-}>({ closeMessage: closeMessage });
+defineExpose({ closeMessage });
 
 const baseClassName = `${prefixName}-message`;
 const typeClassName = `${baseClassName}-${props.type}`;

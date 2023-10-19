@@ -6,9 +6,9 @@
 
 <script lang="ts" setup>
 import { prefixName } from '../theme';
-const props = defineProps({
-  span: Number,
-});
+const props = defineProps<{
+  span: number;
+}>();
 
 function getSpan(propsSpan: number | undefined): number {
   if (typeof propsSpan === 'number') {
