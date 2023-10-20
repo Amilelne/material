@@ -10,10 +10,12 @@ export const renderPage = async (ctx: Context, next: Next) => {
   let ssrHtml = '';
   let ssrCss = '';
   if (ssrPageData?.Page) {
+    console.log("xxxx create ssrPageData");
     const app = createSSRApp(ssrPageData?.Page as Component);
     ssrHtml = await renderToString(app);
     ssrCss = ssrPageData?.css || '';
   }
+  console.log("xxxx pageName", ctx.params.pageName);
   const html = getPageHTML(ctx.params.pageName, { ssrHtml, ssrCss });
   ctx.body = html;
   await next();

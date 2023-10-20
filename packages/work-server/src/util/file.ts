@@ -5,18 +5,27 @@ export function getServerDir() {
   return path.join(__dirname, '..');
 }
 
-export function getPageHTML(pageName: string): string | undefined {
-  let html: string | undefined = `<h1>404: 页面不存在</h1>`;
+export function getPageHTML(
+  pageName: string,
+  opts?: { ssrHtml?: string; ssrCss?: string }
+): string | null {
+  let html: string | null = '<h1>404: 页面不存在</h1>';
   const htmlPath = path.join(getServerDir(), 'template', 'page.html');
-  if (fs.exitsSync(htmlPath) && fs.stateSync(htmlPath).isFile()) {
+  if (fs.existsSync(htmlPath) && fs.statSync(htmlPath).isFile()) {
     html = fs.readFileSync(htmlPath, { encoding: 'utf-8' });
-    const bodyContent = '<div id="app"></div>';
-    html = html?.replace('<!--INJECT_BODY-->', bodyContent);
+    const bodyContent = `
+    <div id="app">
+      ${opts?.ssrCss ? `<style>${opts?.ssrCss}</style>` : ''}
+      ${opts?.ssrHtml || ''}
+    </div>`;
+    html = html.replace('<!--INJECT_BODY-->', bodyContent);
 
     if (process.env.NODE_ENV === 'development') {
-      html = html?.replace(
-        '<!--INJECT_BODY-->',
-        `<script type="module" src="/src/pages/${pageName}/index.ts"></script>`
+      html = html.replace(
+        '<!--INJECT_AFTER_BODY-->',
+        `
+        <script type="module" src="/src/pages/${pageName}/index.ts"></script>
+      `
       );
     } else {
       html = html

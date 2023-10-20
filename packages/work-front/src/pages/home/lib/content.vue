@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '@my/components';
+import { Button } from '@joy/components';
 </script>
 
 <style lang="less">

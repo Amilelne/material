@@ -4,13 +4,13 @@ import type { Component } from 'vue';
 
 const pageConfig: { [name: string]: string } = {
   home: './pages/home/index',
-  login: './pages/home/index',
+  login: './pages/home/index'
 };
 
 export const getPageSSRData = async (pageName: string) => {
   const data: { Page: Component | null; css: string } = {
     Page: null,
-    css: '',
+    css: ''
   };
   if (pageConfig[pageName]) {
     try {
@@ -20,10 +20,12 @@ export const getPageSSRData = async (pageName: string) => {
         data.Page = await import(pageConfig[pageName]);
       }
       if (fs.existsSync(cssPath) && fs.statSync(cssPath)) {
-        data.css = fs.readFileSync(cssPath, { encoding: 'utf-8' });
+        data.css = fs.readFileSync(cssPath, { encoding: 'utf8' });
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   }
+  return data;
 };
