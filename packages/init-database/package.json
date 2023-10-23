@@ -1,0 +1,14 @@
+{
+  "name": "@joy/init-database",
+  "version": "0.0.1",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.21"
+  }
+}
