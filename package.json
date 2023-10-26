@@ -17,10 +17,19 @@
     "dev:work-front": "vite-node ./scripts/dev-work-front.ts",
     "postinstall": "npm run build",
     "db:init": "vite-node ./packages/init-database/src/index.ts",
-    "db:query": "vite-node ./packages/init-database/src/select.ts"
+    "db:query": "vite-node ./packages/init-database/src/select.ts",
+    "dev:products": "vite -c ./vite.config.common.ts ./packages/material-product-list",
+    "dev:banner": "vite -c ./vite.config.common.ts ./packages/material-banner-slides",
+    "build:materials": "vite-node ./scripts/build-materials.ts",
+    "build:portal-front": "vite-node ./scripts/build-portal-front.ts",
+    "build:portal-server": "vite-node ./scripts/build-portal-server.ts",
+    "dev:portal-server": "NODE_ENV=development nodemon --watch 'packages/portal-server/' --exec 'ts-node --project ./tsconfig.node.json' packages/portal-server/src/index.ts",
+    "dev:portal-front": "vite-node ./scripts/dev-portal-front.ts",
+    "build:mock-cdn": "vite-node ./scripts/build-mock-cdn.ts"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@tsconfig/node18": "^1.0.1",
     "@types/koa": "^2.13.5",
@@ -64,6 +73,7 @@
     "webpack": "^5.75.0"
   },
   "dependencies": {
+    "tsconfig-paths": "^4.2.0",
     "vue-router": "4"
   },
   "keywords": [],
