@@ -39,6 +39,7 @@ import type { DynamicFormField } from './type';
 
 const registerComponentMap: { [key: string]: Component } = {
   Input: Input,
+  InputPassword: Input.Password,
   RadioList: RadioList,
 };
 
